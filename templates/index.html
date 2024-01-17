@@ -55,15 +55,15 @@
       <div class="hero-text">
         <h1>Sınırsız film, dizi ve çok daha fazlası.</h1>
         <h4>İstediğiniz yerde izleyin. İstediğiniz zaman iptal edin.</h4>
-        <p>
-          İzlemeye hazır mısınız? Üyelik oluşturmak veya üyeliğinze erişmek için
-          e-posta adresinizi girin
-        </p>
         {% if user.is_authenticated %}
             <button class="btn btn-secondary btn-lg mt-3">Oynat</button>
             <button class="btn btn-secondary btn-lg mt-3">Daha Fazla Bilgi</button>
         {% else %}
         <div class="input-group mb-3">
+        <p>
+          İzlemeye hazır mısınız? Üyelik oluşturmak veya üyeliğinze erişmek için
+          e-posta adresinizi girin
+        </p>
           <input
             type="text"
             class="col-sm-8 col-12 form-control mt-3"
