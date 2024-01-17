@@ -52,18 +52,23 @@
     {% include "includes/_navbar.html" %}
 
       <!-- Hero Text -->
+        {% if user.is_authenticated %}
       <div class="hero-text">
         <h1>Sınırsız film, dizi ve çok daha fazlası.</h1>
         <h4>İstediğiniz yerde izleyin. İstediğiniz zaman iptal edin.</h4>
-        {% if user.is_authenticated %}
             <button class="btn btn-secondary btn-lg mt-3">Oynat</button>
             <button class="btn btn-secondary btn-lg mt-3">Daha Fazla Bilgi</button>
+      </div>    
         {% else %}
-        <div class="input-group mb-3">
+      <!-- Hero Text -->
+      <div class="hero-text">
+        <h1>Sınırsız film, dizi ve çok daha fazlası.</h1>
+        <h4>İstediğiniz yerde izleyin. İstediğiniz zaman iptal edin.</h4>
         <p>
           İzlemeye hazır mısınız? Üyelik oluşturmak veya üyeliğinze erişmek için
           e-posta adresinizi girin
         </p>
+        <div class="input-group mb-3">
           <input
             type="text"
             class="col-sm-8 col-12 form-control mt-3"
@@ -74,13 +79,12 @@
           <button
             class="col-sm-4 col-12 btn btn-danger mt-3"
             type="button"
-            id="button-addon2"
-          >
+            id="button-addon2">
             <a class="text-light text-decoration-none" href="{% url 'register' %}">Başlayın ></a>
           </button>
         </div>
-        {% endif %}
       </div>
+        {% endif %}
     </div>
     <!-- Container-1 -->
     <div class="container-fluid arkaplan mt-2">

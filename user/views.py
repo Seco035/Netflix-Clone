@@ -2,7 +2,9 @@ from django.shortcuts import render,redirect
 from .forms import *
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
-
+from django.core.mail import send_mail
+from django.conf import settings
+import threading
 # Create your views here.
 
 def userRegister(request):
@@ -37,10 +39,10 @@ def userRegister(request):
             
             elif "!" in isim or "?" in isim or "=" in isim:
                 messages.error(request,"İsimde özel karakterler bulunamaz")
+                return redirect("register")
 
             else:
                 user = User.objects.create_user(username=isim, email=email,password=sifre1)
-
                 Kullanici.objects.create(
                     user = user,
                     isim=isim,
@@ -50,12 +52,13 @@ def userRegister(request):
                     tel = tel,
                     dogum = dogum,
                 )
+                subject = "Netflix Clone"
+                message = f"Tebrikler {isim} {soyisim}. Netflix Clone hesabınız başarıyla oluşturuldu."
+                mail_thread = threading.Thread(target=send_mail, args=(subject, message, settings.EMAIL_HOST_USER, [user.email]))
+                mail_thread.start()
                 user.save()
                 messages.success(request,"Kullanıcı Oluşturuldu.")
                 return redirect("login")    
-
-
-  
     return render(request,"register.html")
 
 def userLogin(request):
