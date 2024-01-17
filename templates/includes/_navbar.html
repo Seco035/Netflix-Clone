@@ -5,6 +5,10 @@
 <nav class="navbar">
     <div class="container">
         <a href="" class="navbar-brand"><img class="logo" src="{% static 'img/netflix_logo.png' %}" alt=""></a>
+        <form action="{% url 'movies' %}" class="d-flex" role="search">
+            <input class="form-control me-2 bg-transparent text-white" type="search" placeholder="Search" aria-label="Search" name="search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
         <form class="d-flex" action="">
             <div class="dropdown">
                 <a href="/" class="btn text-white dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
