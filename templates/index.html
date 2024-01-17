@@ -36,8 +36,7 @@
     </script>
   </head>
   <body>
-    <!-- Hero image -->
-    <div class="hero-image">
+
       {% if messages %}
       {% for mesaj in messages %}
         <div class="alert alert-{{mesaj.tags}} text-center" role="alert">
@@ -46,10 +45,11 @@
       {% endfor %}
       {% else %}
       {% endif %}
+    {% block content %}
    
-  {% block content %}
-  {% include "includes/_navbar.html" %}
-  
+      <!-- Hero image -->
+    <div class="hero-image">
+    {% include "includes/_navbar.html" %}
 
       <!-- Hero Text -->
       <div class="hero-text">
@@ -59,6 +59,10 @@
           İzlemeye hazır mısınız? Üyelik oluşturmak veya üyeliğinze erişmek için
           e-posta adresinizi girin
         </p>
+        {% if user.is_authenticated %}
+            <button class="btn btn-secondary btn-lg mt-3">Oynat</button>
+            <button class="btn btn-secondary btn-lg mt-3">Daha Fazla Bilgi</button>
+        {% else %}
         <div class="input-group mb-3">
           <input
             type="text"
@@ -75,6 +79,7 @@
             <a class="text-light text-decoration-none" href="{% url 'register' %}">Başlayın ></a>
           </button>
         </div>
+        {% endif %}
       </div>
     </div>
     <!-- Container-1 -->
@@ -355,7 +360,7 @@
             <li><a href="" class="dropdown-item">İngilizce</a></li>
           </ul>
         </div>
-        <p class="p-footer">Netflix Türkiye (Mervan)</p>
+        <p class="p-footer">Netflix Türkiye ({{user.isim}}) </p>
       </div>
     </div>
 
